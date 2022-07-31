@@ -1,6 +1,7 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
@@ -10,11 +11,11 @@ app.use(bodyParser.json());
 
 // Configuration handlebars
 app.engine('.hbs', engine({
-    extname: '.hbs'
+    extname: '.hbs',
 }));
 
 app.set('view engine', '.hbs');
-app.set('views', './views');
+app.set('views', path.join(__dirname, '../Front-End/views/partials'));
 
 // Route fichier static
 app.use('/assets', express.static('public'));
